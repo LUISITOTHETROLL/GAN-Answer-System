@@ -51,8 +51,7 @@ def main():
             st.markdown(message["content"])
 
     session = create_datastax_connection()
-    if 'OPENAI_API_KEY' not in os.environ:
-        os.environ['OPENAI_API_KEY'] = "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"
+    
 
 
     llm = OpenAI(temperature=0)
