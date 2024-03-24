@@ -34,9 +34,16 @@ def create_datastax_connection():
 
 def main():
     index_placeholder = None
-    st.set_page_config(page_title='Chat with your PDF', page_icon="📄")
-    st.header('💬 Chat with your PDF')
-
+    st.set_page_config(page_title='Chat with your PDF (UA) ', page_icon="📄")
+    st.header('💬 Chat with your PDF (UA version)')
+    # Crea dos columnas
+    col1, col2 = st.columns(2)
+    imagen_path = 'logo-ua.png'
+    imagen_path2 = 'NLP_icon.png'
+    with col1:
+        st.image(imagen_path, caption='Máster en Inteligencia Artificial',width=250)
+    with col2:
+        st.image(imagen_path2, width=250)
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
 
@@ -51,7 +58,7 @@ def main():
             st.markdown(message["content"])
 
     session = create_datastax_connection()
-    
+
 
 
     llm = OpenAI(temperature=0)
@@ -79,7 +86,7 @@ def main():
     temp_dir = tempfile.gettempdir()
 
     with st.sidebar:
-        st.subheader('Upload Your PDF File')
+        st.subheader('Upload Your PDF File (Corpus)')
         docs = st.file_uploader('📁 Upload your PDF & Click to process', accept_multiple_files = False, type=['pdf'])
 
         if st.button('Process'):
